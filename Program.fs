@@ -51,30 +51,16 @@ module HTML =
 
 
 let getFileContent (fileName: string) : (string [] * string) =
-    (File.ReadAllLines $"./{fileName}.md", fileName)
+    ((File.ReadAllText $"./{fileName}.md").Split("\n"), fileName)
 
 let file = getFileContent "test"
 
 file |> Meta.metaFromFileContent |> printfn "%A"
 
-File.ReadAllText "./test.md"
-|> HTML.getHTMLFromMarkdown
-|> printfn "%s"
 
 
+let rawFile = File.ReadAllText "./test.md"
 
-// let lines = File.ReadAllText "./test.md"
-
-// let split =
-// let meta = split.[1].Trim()
-// let content = split.[2].Trim()
-
-// let bone =
-//     MarkdownPipelineBuilder()
-//         .UseAutoIdentifiers(AutoIdentifierOptions.GitHub)
-//         .UsePipeTables()
-//         .Build()
-
-
-// let document = Markdown.ToHtml(content, bone)
-// printfn "%s" document
+// rawFile
+// |> HTML.getHTMLFromMarkdown
+// |> printfn "%s"
